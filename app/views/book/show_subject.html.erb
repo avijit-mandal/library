@@ -1,0 +1,7 @@
+<h1><%= @subject.name %></h1>
+<ul>
+	<% @subject.books.each do |sub|%>
+		<li><%= link_to sub.title, :action => 'show', :id=> sub.id %></li>
+	<% end %>
+</ul>
+<p><%= link_to 'Back', :action => 'list' %></p>

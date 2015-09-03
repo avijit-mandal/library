@@ -1,0 +1,26 @@
+
+<h1>Add new book</h1>
+<%= form_for :book, url: book_index_path do |f| %>
+  <p>
+    <%= f.label :Title %><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= f.label :Price %><br>
+    <%= f.text_field :price %>
+  </p>
+  <p>
+    <%= f.label :Subject %><br>
+    <%= f.collection_select(:subject_id,@subjects,:id,:name) %>
+  </p>
+  <p>
+    <%= f.label :Description %><br>
+    <%= f.text_field :description %>
+  </p>
+ 
+  <p>
+    <%= f.submit 'Add Book'%>
+  </p>
+<% end %>
+<%= link_to 'Back', {:action => 'list'} %>
