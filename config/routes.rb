@@ -62,6 +62,6 @@ Rails.application.routes.draw do
   get 'book', to: 'book#list'
   #get 'subject/:subject_id' => 'book#show_subject', as: 'subject'
 
-  root 'user_profile#new'
+  root 'book#list'
   
 end

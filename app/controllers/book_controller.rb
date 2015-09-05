@@ -1,4 +1,6 @@
 class BookController < ApplicationController
+   before_filter :authenticate_user!, :except => [:show, :list]
+
    def list
       @books = Book.all
    end

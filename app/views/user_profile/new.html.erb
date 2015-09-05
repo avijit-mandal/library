@@ -1,5 +1,7 @@
 <h1>User Details</h1>
 
+
+
 <%= form_for :user_profile, url: user_profile_index_path do|f| %>
 
 	<p>
@@ -34,6 +36,8 @@
 	    <%= f.label :address %>
 	    <%= f.text_area :address %>
 	</p>
+	<% user_id = current_user.id%>
+	<%= current_user.id%>
 
 	<p>
     	<%= f.submit 'Save'%>
