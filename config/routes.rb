@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -56,9 +57,11 @@ Rails.application.routes.draw do
   #   end
 
   resources :book, :except => :index
+  resources :user_profile, :except => :index
+  resources :subject, :except => :index
   get 'book', to: 'book#list'
-  get 'subject/:subject_id' => 'book#show_subject', as: 'subject'
+  #get 'subject/:subject_id' => 'book#show_subject', as: 'subject'
 
-  root 'book#list'
+  root 'user_profile#new'
   
 end

@@ -41,11 +41,7 @@ class BookController < ApplicationController
 
    def destroy
       Book.find(params[:id]).destroy
-      redirect_to :action => 'list'
-   end
-
-   def show_subject
-      @subject = Subject.find(params[:subject_id])
+      redirect_to book_index_path
    end
 
    private
