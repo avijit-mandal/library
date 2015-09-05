@@ -1,0 +1,9 @@
+<h1>Welcome <%=@user_profile.first_name%> </h1>
+
+<p>Name:- <%=@user_profile.first_name%> <%=@user_profile.last_name%></p>
+<p>Phone No.:- <%=@user_profile.phone_no%></p>
+<p>Sex:- <%=@user_profile.sex%></p>
+<p>Date of Birth:- <%=@user_profile.date_of_birth%></p>
+<p>Address:- <%=@user_profile.address%></p>
+
+<p><%= link_to 'Edit', edit_user_profile_path(@user_profile) %></p>
