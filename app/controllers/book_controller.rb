@@ -1,5 +1,5 @@
 class BookController < ApplicationController
-   before_filter :authenticate_user!, :except => [:show, :list]
+   before_filter :authenticate_user!
 
    def list
       @books = Book.all
@@ -18,6 +18,8 @@ class BookController < ApplicationController
    def create
       
       @book = Book.new(book_params)
+      @book.user_id = current_user.id
+
       if @book.save
             redirect_to :action => 'list'
       else
@@ -29,6 +31,12 @@ class BookController < ApplicationController
    def edit
       @book = Book.find(params[:id])
       @subjects = Subject.all
+      if @book.user_id == current_user.id
+         render :action => 'edit'
+         
+      else
+         redirect_to :action => 'list'
+      end
    end
 
    def update
@@ -42,8 +50,14 @@ class BookController < ApplicationController
    end
 
    def destroy
-      Book.find(params[:id]).destroy
-      redirect_to book_index_path
+      @book = Book.find(params[:id])
+      if @book.user_id == current_user.id
+         @book.destroy
+         redirect_to book_index_path
+      else
+         redirect_to :action => 'list'
+      end
+      
    end
 
    private

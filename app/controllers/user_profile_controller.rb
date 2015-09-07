@@ -1,5 +1,6 @@
 class UserProfileController < ApplicationController
 	before_filter :authenticate_user!
+	
 
 	def new
 		@user_profile = UserProfile.new
@@ -7,6 +8,7 @@ class UserProfileController < ApplicationController
 
 	def create
 		@user_profile = UserProfile.new(user_params)
+		@user_profile.user_id = current_user.id
 		if @user_profile.save
 			redirect_to user_profile_path(@user_profile)
 		else
