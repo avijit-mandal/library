@@ -1,5 +1,5 @@
 class BookController < ApplicationController
-   before_filter :authenticate_user!
+   before_filter :authenticate_user!, except: [:list, :show]
 
    def list
       @books = Book.all

@@ -8,7 +8,7 @@
 <strong>Created Date:</strong> <%= @book.created_at %>
 </p>
 <hr />
-<p><% if @book.user_id == current_user.id %>
+<p><% user_signed_in? && if @book.user_id == current_user.id %>
 				<b> <%= link_to 'Edit', :action => 'edit', :id => book.id %></b>
 				<b> <%= link_to "Delete", book_path(book), method: :DELETE, :confirm => "Are you sure you want to delete this item?" %></b>
 			<% else %>
