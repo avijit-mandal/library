@@ -3,6 +3,12 @@
 
 	<%= form_for :user_profile, url: user_profile_path(@user_profile), method: :patch do |f| %>
 
+		
+		<p>
+		    <%= f.label :profile_image, "Profile Image" %><br/>
+		    <img src=<%= @user_profile.profile_image_url%>  style="width:50px;height:50px;">
+		    <%= f.file_field :profile_image %>
+		</p>
 
 		<p>
 		    <%= f.label :phone_no, "Phone No" %><br/>

@@ -1,6 +1,7 @@
-<div id="user_nav" style="padding: 10px; background-color: gold; text-align: right; overflow: auto;">
+<div id="user_nav" style=" background-color: gold; text-align: right; overflow: auto;">
   
   <% if user_signed_in? %>
+    <img src=<%= @user_profile.profile_image_url%>  style="width:40px;height:40px;">
     hi <%= current_user.first_name %> <%= current_user.last_name %>! Not you?
     <%= link_to "Sign out", destroy_user_session_path, method: :DELETE %>
 
