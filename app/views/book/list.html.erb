@@ -1,32 +1,28 @@
-<ul id="subjects">
+<div style= "overflow: auto;" > 
+	<%= render partial: 'shared/subjects' %>
 
-	<% Subject.all.each do |subject| %>
-		<li><%= link_to subject.name, subject_path(subject) %></li>
-	<% end %>
+	<div id="list" style="float: left; width: 70%; padding: 10px 0px 0px 20px; background-color: rgb(255, 255, 240); overflow: auto;">
+		<% if @books.blank? %>
+			<p>There are not any books currently in the system.</p>
 
-</ul>
+		<% else %>
+			<p>These are the current books in our system</p>
+			<ul id="books">
+				
+				<% @books.limit(10).order('created_at DESC').each do |book| %>
+					<li>
+						</td><%= link_to book.title, :action => 'show', :id => book.id%>
 
-<% if @books.blank? %>
-	<p>There are not any books currently in the system.</p>
-
-<% else %>
-	<p>These are the current books in our system</p>
-	<ul id="books">
-		
-		<% @books.each do |book| %>
-			<li>
-				<%= link_to book.title, :action => 'show', :id => book.id%>
-
-				<% if user_signed_in? && book.user_id == current_user.id %>
-					<b> <%= link_to 'Edit', :action => 'edit', :id => book.id %></b>
-					<b> <%= link_to "Delete", book_path(book), method: :DELETE, :confirm => "Are you sure you want to delete this item?" %></b>
-				<% else %>
-					Edit
-					Delete
-				<%end%>
-			</li>
+						<% if user_signed_in? && book.user_id == current_user.id %>
+							<b> <%= link_to 'Edit', :action => 'edit', :id => book.id %></b>
+							<b> <%= link_to "Delete", book_path(book), method: :DELETE, :confirm => "Are you sure you want to delete this item?" %></b>
+						<% else %>
+							Edit
+							Delete
+						<%end%>
+					</li>
+				<% end %>
+			</ul>
 		<% end %>
-	</ul>
-<% end %>
-
-<p><%= link_to "Add new Book", :action => 'new' %></p>
+	</div>
+</div>

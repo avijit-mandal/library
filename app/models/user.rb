@@ -6,4 +6,12 @@ class User < ActiveRecord::Base
 
    has_one :user_profile
    has_many :books
+
+   def full_name
+		first_name.present? ? "#{first_name} #{last_name}" : nil
+	end
+
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+	
 end

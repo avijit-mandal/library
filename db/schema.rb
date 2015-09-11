@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908122017) do
+ActiveRecord::Schema.define(version: 20150911074319) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title",       limit: 32, null: false
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20150908122017) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "user_id"
+    t.string   "author"
+    t.string   "cover_image"
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -36,8 +38,6 @@ ActiveRecord::Schema.define(version: 20150908122017) do
   end
 
   create_table "user_profiles", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
     t.integer  "phone_no",      limit: 10
     t.text     "address"
     t.string   "sex"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150908122017) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "user_id"
+    t.string   "profile_image"
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,6 +64,8 @@ ActiveRecord::Schema.define(version: 20150908122017) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

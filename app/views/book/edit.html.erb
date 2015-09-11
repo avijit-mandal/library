@@ -1,25 +1,42 @@
-<h1>Edit Book Detail</h1>
+<div style= "overflow: auto;" > 
+	<%= render partial: 'shared/subjects' %>
 
-<%= form_for :book, url: book_path(@book), method: :patch do |f| %>
-	<p> 
-		<label for="book_title" > Title </label>:</br>
-		<%= text_field 'book', 'title' %>
-	</p>
-	<p> 
-		<label for="book_price"> Price </label>:</br>
-		<%= text_field 'book', 'price' %>
-	</p>
-	<p>
-		<label for="book_subject"> Subject </label>:</br>
-			<%= collection_select(:book, :subject_id, @subjects, :id, :name) %>
-	</p>
-	<p>
-		<label for="book_description"> Description </label>:<br/>
-		<%= text_area 'book', 'description' %>
-	</p>
+	<div id = "edit_book" style="float: left; width: 70%; padding: 10px 0px 0px 20px; background-color: rgb(255, 255, 240); overflow: auto;">
 
-	<%= submit_tag "Save changes" %>
+		<h1>Edit Book Detail</h1>
 
-<%end%>
+		<%= form_for :book, url: book_path(@book), method: :patch do |f| %>
+			<label for="book_cover_image" > Cover Image </label>:<br/>
+				<%= text_field 'book', 'cover_image' %>
 
-<p><%= link_to 'Back', :action => 'list' %></p>
+			<p> 
+				<label for="book_title" > Title </label>:<br/>
+				<%= text_field 'book', 'title' %>
+			</p>
+
+			<label for="book_author" > Author </label>:<br/>
+				<%= text_field 'book', 'author' %>
+			
+			<p> 
+				<label for="book_price"> Price </label>:<br/>
+				<%= text_field 'book', 'price' %>
+			</p>
+			
+			<p>
+				<label for="book_subject"> Subject </label>:<br/>
+					<%= collection_select(:book, :subject_id, @subjects, :id, :name) %>
+			</p>
+			
+			<p>
+				<label for="book_description"> Description </label>:<br/>
+				<%= text_area 'book', 'description' %>
+			</p>
+
+			<%= submit_tag "Save changes" %>
+
+		<%end%>
+
+		<p><%= link_to 'Back', :action => 'list' %></p>
+		
+	</div>
+</div>

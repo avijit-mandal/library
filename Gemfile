@@ -35,6 +35,9 @@ gem 'devise', '~> 3.5.1'
 
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-collection_matchers'
+  gem 'shoulda-matchers'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

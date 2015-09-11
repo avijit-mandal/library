@@ -28,6 +28,7 @@ class TestsController < ApplicationController
 
     respond_to do |format|
       if @test.save
+        TestMailer.welcome_email(@test).deliver_now
         format.html { redirect_to @test, notice: 'Test was successfully created.' }
         format.json { render :show, status: :created, location: @test }
       else

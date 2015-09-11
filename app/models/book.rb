@@ -3,4 +3,5 @@ class Book < ActiveRecord::Base
 	belongs_to :user
 	validates_presence_of :title
  	validates_numericality_of :price, :message=>"Error Message"
+ 	validates_presence_of :description
 end
