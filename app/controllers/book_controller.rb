@@ -6,7 +6,9 @@ class BookController < ApplicationController
    end
 
    def show
+
       @book = Book.find(params[:id])
+      @subject = Subject.find(@book.subject_id)
 
    end
 
@@ -19,7 +21,7 @@ class BookController < ApplicationController
       
       @book = Book.new(book_params)
       @book.user_id = current_user.id
-
+      @book.cover_image = params[:cover_image]
       if @book.save
             redirect_to :action => 'list'
       else
@@ -31,6 +33,7 @@ class BookController < ApplicationController
    def edit
       @book = Book.find(params[:id])
       @subjects = Subject.all
+
       if @book.user_id == current_user.id
          render :action => 'edit'
          
@@ -41,6 +44,7 @@ class BookController < ApplicationController
 
    def update
       @book = Book.find(params[:id])
+      @book.cover_image = params[:cover_image]
       if @book.update_attributes(book_params)
          redirect_to :action => 'show', :id => @book
       else
@@ -52,7 +56,9 @@ class BookController < ApplicationController
    def destroy
       @book = Book.find(params[:id])
       if @book.user_id == current_user.id
+         @book.remove_cover_image!
          @book.destroy
+         
          redirect_to book_index_path
       else
          redirect_to :action => 'list'
@@ -62,6 +68,6 @@ class BookController < ApplicationController
 
    private
       def book_params
-         params.require(:book).permit(:title, :author, :price, :subject_id, :description)
+         params.require(:book).permit(:title, :author, :price, :subject_id, :description, :cover_image)
       end
 end

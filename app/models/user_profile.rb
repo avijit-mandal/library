@@ -1,5 +1,6 @@
 class UserProfile < ActiveRecord::Base
 	belongs_to :user
+	has_many :books
 
 	mount_uploader :profile_image, AvatarUploader
 

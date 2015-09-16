@@ -1,20 +1,33 @@
 <div id="user_nav" style=" background-color: gold; text-align: right; overflow: auto;">
   
   <% if user_signed_in? %>
-    <img src=<%= @user_profile.profile_image_url%>  style="width:40px;height:40px;">
-    hi <%= current_user.first_name %> <%= current_user.last_name %>! Not you?
-    <%= link_to "Sign out", destroy_user_session_path, method: :DELETE %>
 
-      <% if current_user.user_profile.present? %>
-        <%= link_to "Profile", user_profile_path(current_user.user_profile)%>
-      
-      <% else%>
-        <%= link_to "Add Details", new_user_profile_path(current_user.user_profile) %>
-      
-      <% end%>
+    <table style= "width: 100%">
+      <td style="text-align: right; overflow: auto; width: 75%">
+        
 
-    <%= link_to "Books", root_path %>
-  
+          <% if current_user.user_profile.present? %>
+            <%= link_to "Profile", user_profile_path(current_user.user_profile)%>
+          
+          <% else%>
+            <%= link_to "Add Details", new_user_profile_path(current_user.user_profile) %>
+          
+          <% end%>
+
+        <%= link_to "Books", root_path %>
+      
+      </td>
+
+     
+      <td style="text-align: right; overflow: auto; width: 25%">
+        <img src=<%= current_user.user_profile.present? ? "#{current_user.user_profile.profile_image_url}" : nil%>  style="width:40px;height:40px;">
+        
+        Hi <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %>! Not you?
+
+        <%= link_to "Sign out", destroy_user_session_path, method: :DELETE %>
+
+      </td>
+    </table>
   <% else %>
   
     <%= link_to "Sign up", new_user_registration_path %> or  
