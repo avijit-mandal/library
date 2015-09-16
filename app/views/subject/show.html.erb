@@ -7,7 +7,7 @@
 
 		<ul>
 			<% @subject.books.each do |sub| %>
-				<li><%= link_to sub.title, book_path(sub.id) %></li>
+				<li><%= link_to sub.title, book_path(sub) %></li>
 			
 			<% end %>
 		

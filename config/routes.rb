@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :tests
   devise_for :users, :controllers => { registrations: 'registrations' }
   # The priority is based upon order of creation: first created -> highest priority.
@@ -56,12 +57,15 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources :book, :except => :index do
+    resources :book_content, :except => :index
+  end
 
-  resources :book, :except => :index
   resources :user_profile, :except => :index
   resources :subject, :except => :index
   get 'book', to: 'book#list'
   #get 'subject/:subject_id' => 'book#show_subject', as: 'subject'
+  get 'book/:book_id/chapter_list' => 'book_content#chapter_list', as: 'chapters'
 
   root 'book#list'
   
