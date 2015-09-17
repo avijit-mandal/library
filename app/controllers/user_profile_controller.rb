@@ -36,7 +36,7 @@ class UserProfileController < ApplicationController
     	if @user_profile.update_attributes(user_params)
         	redirect_to user_profile_path(@user_profile)
     	else
-        	render edit_user_profile_path(@user_profile)
+        	render :action => 'edit'
       	end
 	end
 

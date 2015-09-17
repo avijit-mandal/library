@@ -4,7 +4,7 @@ class UserProfile < ActiveRecord::Base
 
 	mount_uploader :profile_image, AvatarUploader
 
-	validates_presence_of :phone_no #:message=>"Must enter your phone no"
+	validates :phone_no, :presence =>{:message=>"please enter your phone no"}
 	validates :sex, :presence =>  true
-	validates :date_of_birth, :presence => true
+	validates :date_of_birth, :presence =>{:message=>"Please enter your date of birth"}
 end
