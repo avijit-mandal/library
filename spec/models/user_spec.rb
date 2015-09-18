@@ -31,4 +31,7 @@ describe User do
  	expect(User.new(last_name: nil)).to have(1).error_on(:last_name)
  end
 
+ it {should have_one(:user_profile)}
+ it {should have_many(:books)}
+
 end

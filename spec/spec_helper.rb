@@ -41,6 +41,8 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
 
+    config.filter_run_excluding :broken
+
   end
 
 # The settings below are suggested to provide a good initial experience
