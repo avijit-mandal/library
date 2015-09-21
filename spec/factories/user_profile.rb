@@ -6,5 +6,7 @@ FactoryGirl.define do
   	address 'bangalore, koramangla'
   	sex 'male' 
   	date_of_birth '29/04/1992'
+
+  		user
   end
 end

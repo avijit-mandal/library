@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe UserProfile do
+RSpec.describe UserProfile do
 
 	# using FactoryGirl 
 	it "has a valid factory" do

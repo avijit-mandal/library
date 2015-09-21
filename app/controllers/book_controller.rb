@@ -22,11 +22,13 @@ class BookController < ApplicationController
       @book = Book.new(book_params)
       @book.user_id = current_user.id
       @book.cover_image = params[:cover_image]
+
       if @book.save
-            redirect_to :action => 'list'
+
+         redirect_to root_path
       else
-            @subjects = Subject.all
-            render :action => 'new'
+         @subjects = Subject.all
+         render :action => 'new'
       end
    end
 
@@ -45,10 +47,13 @@ class BookController < ApplicationController
    def update
       @book = Book.find(params[:id])
       @book.cover_image = params[:cover_image]
+
       if @book.update_attributes(book_params)
+
          redirect_to :action => 'show', :id => @book
       else
          @subjects = Subject.all
+
          render :action => 'edit'
       end
    end
@@ -61,6 +66,7 @@ class BookController < ApplicationController
          
          redirect_to book_index_path
       else
+
          redirect_to :action => 'list'
       end
       

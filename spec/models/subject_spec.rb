@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-describe Subject do
+RSpec.describe Subject do
 	it {should have_many(:books)}
 end

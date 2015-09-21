@@ -1,24 +1,44 @@
 require 'rails_helper'
 
-describe UserProfileController, type: :controller do
+RSpec.describe UserProfileController, type: :controller do
+	let(:user) { create(:user) }
+	let(:user_profile) { create(:user_profile, user: user) }
 
-	before(:each) { sign_in create(:user) }
+	before(:each) { sign_in user }
 
-	describe 'GET #show' do
-
-
-		it "assigns the requested user_profile to @user_profile" do
-			user_profile = create(:user_profile)
+	describe "GET#show" do
+		it "assigns usre profile details to @user_profile" do
 			get :show, id: user_profile
+
 			expect(assigns(:user_profile)).to eq user_profile
 		end
 
-		it "renders the :show template" do
-			user_profile = create(:user_profile)
+		it "it renders to #show" do
 			get :show, id: user_profile
+
 			expect(response).to render_template :show
 		end
-
 	end
+
+	describe "GET#new" do
+		it "assigns a new user profile details to @user_profile" do
+			get :new
+
+			expect(assigns(:user_profile)).to be_a_new(UserProfile)
+		end
+
+		it "renders to #new" do
+			
+		end
+	end
+	describe "GET#edit" do
+		it "asssigns user profile details to @user_profile"
+		it "renders to #edit"
+	end
+
+	
 end
+
+
+
 	
