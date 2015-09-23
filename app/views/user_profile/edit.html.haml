@@ -1,0 +1,29 @@
+%div{:style => "overflow: auto;"}
+  %h1 Edit User Detail
+  = form_for :user_profile, url: user_profile_path(@user_profile), method: :patch do |f|
+    %p
+      = f.label :name, "Profile Image"
+      %br/
+      <img src=#{current_user.image.present? ? "#{current_user.image.name_url}" : nil}  style="width:50px;height:50px;">
+      \#{f.file_field :name}
+    %p
+      = f.label :phone_no, "Phone No"
+      %br/
+      = f.text_field :phone_no
+    %p
+      = f.label :date_of_birth, "Date of Birth"
+      %br/
+      = f.date_field :date_of_birth
+    %p
+      = f.label :sex
+      = f.radio_button(:sex, "male")
+      = f.label :male
+      = f.radio_button(:sex, "female")
+      = f.label :female
+    %p
+      = f.label :address
+      %br/
+      = f.text_area :address
+    %p
+      = f.submit 'Save Changes'
+  %p= link_to 'Back', user_profile_path

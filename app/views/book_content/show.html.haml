@@ -1,0 +1,12 @@
+%div{:style => "overflow: auto;"}
+  = render partial: 'shared/books_by_subject'
+  = render partial: 'shared/chapter_list'
+  #new_book{:style => "float: left; width: 66%; padding: 10px 0px 0px 20px; background-color: rgb(255, 255, 240); overflow: auto;"}
+    %h1
+      Book Name: #{@book_content.book.title}
+    %h2= @book_content.chapter
+    %p
+      = @book_content.chapter_content
+    %b= link_to 'Edit chapter content', edit_book_book_content_path(book_id: @book_content.book_id, id: @book_content.id)
+    %b= link_to 'Add New Chapter', new_book_book_content_path(@book)
+    %b= link_to "Delete Book", book_book_content_path(book_id: @book_content.book_id, id: @book_content.id), method: :DELETE, :confirm => "Are you sure you want to delete this item?"

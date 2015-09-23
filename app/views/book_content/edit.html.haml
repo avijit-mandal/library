@@ -1,0 +1,16 @@
+%div{:style => "overflow: auto;"}
+  = render partial: 'shared/books_by_subject'
+  = render partial: 'shared/chapter_list'
+  #new_book{:style => "float: left; width: 66%; padding: 10px 0px 0px 20px; background-color: rgb(255, 255, 240); overflow: auto;"}
+    %h1 Edit your Book
+    = form_for :book_content, url: book_book_content_path(book_id: @book_content.book_id, id: @book_content.id), method: :patch do |f|
+      %p
+        = f.label :chapter, "Chapter Name"
+        %br/
+        %br/
+        = f.text_field :chapter
+      %p
+        = f.label :chapter_content, "Chapter Content"
+        %br/
+        = f.text_area :chapter_content, size: "100x20"
+      = f.submit 'Save chapter'

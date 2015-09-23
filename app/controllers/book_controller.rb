@@ -21,10 +21,9 @@ class BookController < ApplicationController
       
       @book = Book.new(book_params)
       @book.user_id = current_user.id
-      @book.cover_image = params[:cover_image]
 
       if @book.save
-
+         upload_cover_image(@book.id)
          redirect_to root_path
       else
          @subjects = Subject.all
@@ -37,8 +36,7 @@ class BookController < ApplicationController
       @subjects = Subject.all
 
       if @book.user_id == current_user.id
-         render :action => 'edit'
-         
+         render :action => 'edit' 
       else
          redirect_to :action => 'list'
       end
@@ -46,10 +44,9 @@ class BookController < ApplicationController
 
    def update
       @book = Book.find(params[:id])
-      @book.cover_image = params[:cover_image]
 
       if @book.update_attributes(book_params)
-
+         upload_cover_image(@book.id)
          redirect_to :action => 'show', :id => @book
       else
          @subjects = Subject.all
@@ -61,7 +58,6 @@ class BookController < ApplicationController
    def destroy
       @book = Book.find(params[:id])
       if @book.user_id == current_user.id
-         @book.remove_cover_image!
          @book.destroy
          
          redirect_to book_index_path
@@ -74,6 +70,18 @@ class BookController < ApplicationController
 
    private
       def book_params
-         params.require(:book).permit(:title, :author, :price, :subject_id, :description, :cover_image)
+         params.require(:book).permit(:title, :author, :price, :subject_id, :description, image_attributes: [:name])
+      end
+
+      def upload_cover_image(book)
+         @book = Book.find(book)
+         if @book.image.present?
+            @book.image.update_attributes(name: params[:book][:name])
+         else
+            image = Image.new
+            image.name = params[:book][:name]
+            image.imageable = @book
+            image.save
+         end
       end
 end

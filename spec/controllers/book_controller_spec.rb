@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe BookController, type: :controller do
 
 	let(:user) { create(:user) }
-	let(:book) { create(:book, user: user) }
+	let(:subject) {create(:subject)}
+	let(:book) { create(:book, user: user, subject: subject) }
 
 	before(:each) { sign_in user }
 
@@ -61,7 +62,7 @@ RSpec.describe BookController, type: :controller do
 		it "assigns book to @book" do
 			# book = create(:book)
 
-			get:edit, id: book
+			get :edit, id: book
 
 			expect(assigns(:book)).to eq book
 		end
@@ -69,7 +70,7 @@ RSpec.describe BookController, type: :controller do
 		it "renders the :edit template" do
 			# book = create(:book)
 
-			get:edit, id: book
+			get :edit, id: book
 
 			expect(response).to render_template :edit
 		end
@@ -80,6 +81,7 @@ RSpec.describe BookController, type: :controller do
 
 		context "with valid attributes" do
 			it "saves the new user in the database" do
+				
 				expect{
 				 post :create, book: attributes_for(:book)
 				}.to change(Book, :count).by(1)

@@ -1,0 +1,6 @@
+#subjects{:style => "width: 15%; float: left; border-right: 3px solid rgb(0, 0, 0); background-color: rgb(224, 230, 179); height: 563px; overflow: auto;"}
+  %h1{:style => "text-align: center;"}= @book.subject.name
+  %ul
+    - @book.subject.books.each do |sub|
+      %b
+        %li= link_to sub.title, book_path(sub.id)

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+
 gem 'carrierwave'
 gem "mini_magick"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -44,6 +45,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'rspec-collection_matchers'
   gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'launchy'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

@@ -1,0 +1,36 @@
+%div{:style => "overflow: auto;"}
+  = render partial: 'shared/subjects'
+  = render partial: 'shared/books_by_subject'
+  #books_per_subject{:style => "float: left; width: 66%; padding: 10px 0px 0px 20px; background-color: rgb(255, 255, 240); overflow: auto;"}
+    %h1= @book.title
+    %table
+      %td{:style => "width: 50%"}
+        <img src=#{@book.image.present? ? "#{@book.image.name_url}" : nil}  style="width:150px;height:150px;">
+      %td
+        %strong Author:
+        = @book.author
+        %br/
+        %strong Price:
+        $#{@book.price}
+        %br/
+        %strong Subject:
+        = link_to @book.subject.name, subject_path(@book.subject.id)
+        %br/
+        %strong Description:
+        = @book.description
+        %br/
+        %strong Created Date:
+        = @book.created_at
+        %p
+          - if user_signed_in?
+            - if @book.user_id == current_user.id
+              %b
+                = link_to 'Edit Book Details', :action => 'edit', :id => @book.id
+              %b
+                = link_to 'Edit Book Content', new_book_book_content_path(@book)
+              %b
+                = link_to "Delete Book", book_path(@book), method: :DELETE, :confirm => "Are you sure you want to delete this item?"
+              %b= link_to 'Read', chapters_path(@book.id)
+          - else
+            %b= link_to 'Read', chapters_path(@book.id)
+          = link_to 'Back', book_index_path

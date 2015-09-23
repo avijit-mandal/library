@@ -1,0 +1,12 @@
+%div{:style => "overflow: auto;"}
+  = render partial: 'shared/subjects'
+  = render partial: 'shared/books_by_subject'
+  #new_book{:style => "float: left; width: 66%; padding: 10px 0px 0px 20px; background-color: rgb(255, 255, 240); overflow: auto;"}
+    %h1
+      Book Name: #{@book.title}
+    %h2
+      - chapter_list.each do |con|
+        %p= link_to con.chapter, book_book_content_path(book_id: con.book_id, id: con.id)
+    - if user_signed_in?
+      - if @book.user_id == current_user.id
+        %p= link_to 'Add New Chapter', new_book_book_content_path(@book)
