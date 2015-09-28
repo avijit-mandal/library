@@ -25,7 +25,7 @@ class BookController < ApplicationController
       
       @book = Book.new(book_params)
       @book.user_id = current_user.id
-      @book.cover_image = params[:cover_image]
+
       if @book.save
          upload_cover_image(@book.id)
          redirect_to root_path
@@ -48,6 +48,7 @@ class BookController < ApplicationController
 
    def update
       @book = Book.find(params[:id])
+
       if @book.update_attributes(book_params)
          upload_cover_image(@book.id)
          redirect_to :action => 'show', :id => @book
@@ -61,7 +62,6 @@ class BookController < ApplicationController
    def destroy
       @book = Book.find(params[:id])
       if @book.user_id == current_user.id
-         @book.remove_cover_image!
          @book.destroy
          
          redirect_to book_index_path
