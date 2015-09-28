@@ -77,7 +77,7 @@ RSpec.describe UserProfileController, type: :controller do
 		end
 	end
 
-	describe 'PATCH #update', focus: true do
+	describe 'PATCH #update' do
 		
 		context "valid attributes" do
 			it "located the requested @user_profile" do

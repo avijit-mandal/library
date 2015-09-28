@@ -5,6 +5,10 @@ class BookController < ApplicationController
       @books = Book.all
    end
 
+   def my_books
+      @books = Book.all.where(user_id: current_user.id)
+   end
+
    def show
 
       @book = Book.find(params[:id])

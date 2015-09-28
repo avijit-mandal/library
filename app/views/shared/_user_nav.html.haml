@@ -1,12 +1,15 @@
 #user_nav{:style => " background-color: gold; text-align: right; overflow: auto;"}
   - if user_signed_in?
     %table{:style => "width: 100%"}
-      %td{:style => "text-align: right; overflow: auto; width: 75%"}
+      %td{:style => "text-align: left; overflow: auto; width: 25%"}
+        %b= link_to "Add new Book", new_book_path
+      %td{:style => "text-align: right; overflow: auto; width: 50%"}
         - if current_user.user_profile.present?
           = link_to "Profile", user_profile_path(current_user.user_profile)
         - else
           = link_to "Add Details", new_user_profile_path(current_user.user_profile)
-        = link_to "Books", root_path
+        = link_to "My Books", my_books_path
+        = link_to "All Books", root_path
       %td{:style => "text-align: right; overflow: auto; width: 25%"}
         <img src=#{current_user.image.present? ? "#{current_user.image.name_url}" : nil}  style="width:40px;height:40px;">
         

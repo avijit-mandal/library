@@ -2,6 +2,6 @@ require 'factory_girl'
 
 FactoryGirl.define do 
 	factory :subject do
-		name 'Ruby Programming'
+		name 'My Subjects'
 	end
 end

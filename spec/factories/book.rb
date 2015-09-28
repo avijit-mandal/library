@@ -6,8 +6,10 @@ FactoryGirl.define do
 		price 350
 		description 'book on ruby on rails'
 		author 'avijit mandal'
-			#associations
-  		subject   
-  		user
+
+
+		#associations
+		subject   
+		user
 	end
 end

@@ -4,16 +4,16 @@
     - if @books.blank?
       %p There are not any books currently in the system.
     - else
-      %p These are the current books in our system
+      %h3= "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}'s books"
       %ul#books
-        - @books.limit(10).order('created_at DESC').each do |book|
+        - @books.each do |book|
           %li
             = link_to book.title, :action => 'show', :id => book.id
             - if user_signed_in? && book.user_id == current_user.id
+              %b 
+                = link_to 'Read', chapters_path(book)
               %b
                 = link_to 'Edit', :action => 'edit', :id => book.id
               %b
                 = link_to "Delete", book_path(book), method: :DELETE, data: { confirm: "Are you sure you want to delete this item?"}
-            %b 
-              = link_to 'Read', chapters_path(book)
             
