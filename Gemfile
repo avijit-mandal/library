@@ -37,6 +37,8 @@ gem 'devise', '~> 3.5.1'
 
 gem 'simplecov', :require => false, :group => :test
 
+gem 'twitter-bootstrap-rails'
+
 gem "database_cleaner", "~> 1.5.0"
 
 
