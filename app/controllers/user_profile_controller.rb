@@ -42,6 +42,19 @@ class UserProfileController < ApplicationController
       end
 	end
 
+	def destroy
+      @user_profile = UserProfile.find(params[:id])
+      if @user_profile.user_id == current_user.id
+         @user_profile.destroy
+         
+         redirect_to book_index_path
+      else
+
+         redirect_to :action => 'show', :id => @user_profile
+      end
+      
+   end
+
 	private
 
 		def user_params
