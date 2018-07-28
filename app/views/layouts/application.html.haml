@@ -7,7 +7,8 @@
     = csrf_meta_tags
   = render partial: 'shared/user_nav'
   %body
-    %div{:style => "height: 563px; overflow: auto;"}
-      = yield
+    .container
+      %div{:style => "height: 563px; overflow: auto;"}
+        = yield
   %footer{:style => "float: bottom"}
     = render partial: 'shared/codeapogee'
