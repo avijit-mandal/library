@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :tests
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -69,5 +69,5 @@ Rails.application.routes.draw do
   get 'my_books' => 'book#my_books', as: 'my_books'
 
   root 'book#list'
-  
+
 end
