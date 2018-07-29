@@ -27,7 +27,6 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'json', '1.8.3'
 gem 'jbuilder', '~> 2.5'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -47,6 +46,13 @@ gem 'simplecov', :require => false, :group => :test
 gem 'twitter-bootstrap-rails'
 
 gem "database_cleaner", "~> 1.5.0"
+
+# Web crawler
+gem 'nokogiri'
+gem 'mechanize'
+
+#http => https redirection
+gem 'open_uri_redirections'
 
 
 group :development, :test do
