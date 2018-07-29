@@ -1,13 +1,13 @@
 class UserProfileController < ApplicationController
-	before_filter :authenticate_user!
-	
+	before_action :authenticate_user!
+
 
 	def new
 		@user_profile = UserProfile.new
 	end
 
 	def create
-		
+
 		@user_profile = UserProfile.new(user_params)
 		@user_profile.user_id = current_user.id
 
@@ -24,11 +24,11 @@ class UserProfileController < ApplicationController
 		@uploader = AvatarUploader.new
 
 		@user_profile = UserProfile.find(params[:id])
-		
+
 	end
 
 	def edit
-      @user_profile = UserProfile.find(params[:id]) 
+      @user_profile = UserProfile.find(params[:id])
 	end
 
 	def update
@@ -46,13 +46,13 @@ class UserProfileController < ApplicationController
       @user_profile = UserProfile.find(params[:id])
       if @user_profile.user_id == current_user.id
          @user_profile.destroy
-         
+
          redirect_to book_index_path
       else
 
          redirect_to :action => 'show', :id => @user_profile
       end
-      
+
    end
 
 	private

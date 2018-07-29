@@ -1,5 +1,5 @@
 class BookContentController < ApplicationController
-   before_filter :find_book
+   before_action :find_book
 
  #   def chapter_list
  #      @book_contents = BookContent.where(:book_id => params[:book_id])
@@ -32,7 +32,7 @@ class BookContentController < ApplicationController
 
       if @book_content.user_id == current_user.id
          render :action => 'edit'
-         
+
       else
          redirect_to :action => 'show'
       end
@@ -52,12 +52,12 @@ class BookContentController < ApplicationController
       @book_content = BookContent.find(params[:id])
       if @book_content.user_id == current_user.id
          @book_content.destroy
-         
+
          redirect_to :action => 'show'
       else
          redirect_to :action => 'show'
       end
-      
+
    end
 
    private
