@@ -1,4 +1,4 @@
-class AddAuthorAndCoverImageToBook < ActiveRecord::Migration
+class AddAuthorAndCoverImageToBook < ActiveRecord::Migration[5.1]
   def change
     add_column :books, :author, :string
   end
