@@ -17,3 +17,6 @@
                 = link_to "Delete", book_path(book), method: :DELETE, data: { confirm: "Are you sure you want to delete this item?"}
             %b
               = link_to 'Read', chapters_path(book)
+    %p total links got is #{@links}
+    %p currently running:: #{@c_link}
+    %p please copy the link and keep it. then after 10 min refresh id the link is not changed then click Add new book. then come back to home page and check if the link is changed of not.

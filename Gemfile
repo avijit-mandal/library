@@ -52,6 +52,9 @@ gem "database_cleaner"
 gem 'nokogiri'
 gem 'mechanize'
 
+gem 'redis', '~> 3.0'
+gem 'redis-namespace'
+
 #http => https redirection
 gem 'open_uri_redirections'
 

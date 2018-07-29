@@ -1,91 +1,97 @@
 class BookController < ApplicationController
-   before_action :authenticate_user!, except: [:list, :show]
+  before_action :authenticate_user!, except: [:list, :show]
 
-   def list
-      @books = Book.all
-   end
+  def list
+    @books = Book.all
 
-   def my_books
-      @books = Book.all.where(user_id: current_user.id)
-   end
+    redis = Redis::Namespace.new("medicine", :redis => Redis.new)
+    @links = redis.scard('med_links')
+    @c_link = redis.get('current_link')
+  end
 
-   def show
+  def my_books
+    @books = Book.all.where(user_id: current_user.id)
 
-      @book = Book.find(params[:id])
-      @subject = Subject.find(@book.subject_id)
+    CollectAllLinksJob.perform_now
+  end
 
-   end
+  def show
+    @book = Book.find(params[:id])
+    @subject = Subject.find(@book.subject_id)
+  end
 
-   def new
-      @book = Book.new
-      @subjects = Subject.all
-   end
+  def new
+    @book = Book.new
+    @subjects = Subject.all
 
-   def create
+    CollectAllLinksJob.perform_now
+  end
 
-      @book = Book.new(book_params)
-      @book.user_id = current_user.id
+  def create
 
-      if @book.save
-         upload_cover_image(@book.id)
-         redirect_to root_path
-      else
-         @subjects = Subject.all
-         render :action => 'new'
-      end
-   end
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
 
-   def edit
-      @book = Book.find(params[:id])
-      @subjects = Subject.all
+    if @book.save
+       upload_cover_image(@book.id)
+       redirect_to root_path
+    else
+       @subjects = Subject.all
+       render :action => 'new'
+    end
+  end
 
-      if @book.user_id == current_user.id
-         render :action => 'edit'
-      else
-         redirect_to :action => 'list'
-      end
-   end
+  def edit
+    @book = Book.find(params[:id])
+    @subjects = Subject.all
 
-   def update
-      @book = Book.find(params[:id])
+    if @book.user_id == current_user.id
+       render :action => 'edit'
+    else
+       redirect_to :action => 'list'
+    end
+  end
 
-      if @book.update_attributes(book_params)
-         upload_cover_image(@book.id)
-         redirect_to :action => 'show', :id => @book
-      else
-         @subjects = Subject.all
+  def update
+    @book = Book.find(params[:id])
 
-         render :action => 'edit'
-      end
-   end
+    if @book.update_attributes(book_params)
+       upload_cover_image(@book.id)
+       redirect_to :action => 'show', :id => @book
+    else
+       @subjects = Subject.all
 
-   def destroy
-      @book = Book.find(params[:id])
-      if @book.user_id == current_user.id
-         @book.destroy
+       render :action => 'edit'
+    end
+  end
 
-         redirect_to book_index_path
-      else
+  def destroy
+    @book = Book.find(params[:id])
+    if @book.user_id == current_user.id
+       @book.destroy
 
-         redirect_to :action => 'list'
-      end
+       redirect_to book_index_path
+    else
 
-   end
+       redirect_to :action => 'list'
+    end
 
-   private
-      def book_params
-         params.require(:book).permit(:title, :author, :price, :subject_id, :description, image_attributes: [:name])
-      end
+  end
 
-      def upload_cover_image(book)
-         @book = Book.find(book)
-         if @book.image.present?
-            @book.image.update_attributes(name: params[:book][:name])
-         else
-            image = Image.new
-            image.name = params[:book][:name]
-            image.imageable = @book
-            image.save
-         end
-      end
+  private
+    def book_params
+       params.require(:book).permit(:title, :author, :price, :subject_id, :description, image_attributes: [:name])
+    end
+
+    def upload_cover_image(book)
+       @book = Book.find(book)
+       if @book.image.present?
+          @book.image.update_attributes(name: params[:book][:name])
+       else
+          image = Image.new
+          image.name = params[:book][:name]
+          image.imageable = @book
+          image.save
+       end
+    end
 end
