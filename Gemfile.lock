@@ -129,6 +129,7 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
+    libv8 (3.16.14.19)
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -216,6 +217,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rdoc (6.0.4)
+    ref (2.0.0)
     remotipart (1.4.2)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
@@ -269,6 +271,9 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     temple (0.8.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -315,6 +320,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   launchy
+  less-rails
   mechanize
   mini_magick
   nokogiri
@@ -331,6 +337,7 @@ DEPENDENCIES
   shoulda-matchers
   simplecov
   spring
+  therubyracer
   turbolinks
   twitter-bootstrap-rails
   uglifier

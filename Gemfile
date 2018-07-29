@@ -42,6 +42,8 @@ gem 'devise'
 
 gem 'simplecov', :require => false, :group => :test
 
+gem 'therubyracer'
+gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
 gem "database_cleaner"
