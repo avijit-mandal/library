@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20180729173635) do
   end
 
   create_table "madicines", force: :cascade do |t|
+    t.string "sl_no"
     t.string "manufacturer"
     t.string "name"
     t.string "m_type"

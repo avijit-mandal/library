@@ -3,16 +3,11 @@ class BookController < ApplicationController
 
   def list
     @books = Book.all
-
-    redis = Redis::Namespace.new("medicine", :redis => Redis.new)
-    @links = redis.scard('med_links')
-    @c_link = redis.get('current_link')
+    @med_count = Madicine.all.count
   end
 
   def my_books
     @books = Book.all.where(user_id: current_user.id)
-
-    CollectAllLinksJob.perform_now
   end
 
   def show
@@ -24,7 +19,7 @@ class BookController < ApplicationController
     @book = Book.new
     @subjects = Subject.all
 
-    CollectAllLinksJob.perform_now
+    CollectMedicineDetailsJob.perform_now
   end
 
   def create
