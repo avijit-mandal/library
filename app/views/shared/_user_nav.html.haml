@@ -12,9 +12,9 @@
         = link_to "All Books", root_path
       %td{:style => "text-align: right; overflow: auto; width: 25%"}
         <img src=#{current_user.image.present? ? "#{current_user.image.name_url}" : nil}  style="width:40px;height:40px;">
-        
+
         Hi #{current_user.first_name.capitalize} #{current_user.last_name.capitalize}! Not you?
-        
+
         \#{link_to "Sign out", destroy_user_session_path, method: :DELETE}
   - else
     = link_to "Sign up", new_user_registration_path

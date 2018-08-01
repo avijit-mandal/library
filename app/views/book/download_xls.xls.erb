@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Sl. No.</Data></Cell>
+        <Cell><Data ss:Type="String">Manufacturer</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Type</Data></Cell>
+        <Cell><Data ss:Type="String">Unit</Data></Cell>
+        <Cell><Data ss:Type="String">Price</Data></Cell>
+      </Row>
+      <%= @all_med.each do |med| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= med.sl_no %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= med.manufacturer %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= med.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= med.m_type %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= med.unit %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= med.price %></Data></Cell>
+        </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+

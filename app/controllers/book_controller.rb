@@ -10,6 +10,13 @@ class BookController < ApplicationController
     @books = Book.all.where(user_id: current_user.id)
   end
 
+  def download_xls
+    @all_med = Madicine.all
+    respond_to do |format|
+      format.xls { headers["Content-Disposition"] = "attachment; filename=med_details.xls" }
+    end
+  end
+
   def show
     @book = Book.find(params[:id])
     @subject = Subject.find(@book.subject_id)
