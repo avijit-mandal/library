@@ -18,3 +18,5 @@
                 = link_to "Delete", book_path(book), method: :DELETE, data: { confirm: "Are you sure you want to delete this item?"}
     %b
       = link_to "Download XLS", download_xls_path(format: "xls")
+    %b
+      = link_to "Delete meds", book_path(id: 1), method: :DELETE, data: { confirm: "Are you sure you want to delete this item?"}

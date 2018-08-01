@@ -68,16 +68,21 @@ class BookController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
-    if @book.user_id == current_user.id
-       @book.destroy
 
-       redirect_to book_index_path
-    else
+    # @book = Book.find(params[:id])
+    # if @book.user_id == current_user.id
+    #    @book.destroy
 
-       redirect_to :action => 'list'
-    end
+    #    redirect_to book_index_path
+    # else
 
+    #    redirect_to :action => 'list'
+    # end
+    all_med = Madicine.all
+
+    all_med.delete_all
+
+    redirect_to :action => 'list'
   end
 
   private

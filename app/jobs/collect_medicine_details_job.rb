@@ -2,11 +2,11 @@ class CollectMedicineDetailsJob < ActiveJob::Base
   queue_as :default
 
   def perform
-    doc = Nokogiri::HTML(open('http://www.medguideindia.com/show_brand.php'))
+    # doc = Nokogiri::HTML(open('http://www.medguideindia.com/show_brand.php'))
 
-    links_div = doc.css('.tabsborder2 table .mosttext')
-    links = links_div.search('option').map { |link| "http://www.medguideindia.com/#{link['value']}"}
-
+    # links_div = doc.css('.tabsborder2 table .mosttext')
+    # links = links_div.search('option').map { |link| "http://www.medguideindia.com/#{link['value']}"}
+    links = ['http://www.medguideindia.com/show_brand.php?nav_link=&pageNum_rr=1769&nav_link=&selectme=1769']
     j = [1, 2, 3, 4, 7, 8]
 
     while link = links.pop do
