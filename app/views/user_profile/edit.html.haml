@@ -1,29 +1,19 @@
-#edit_user_profile_details{:style => "overflow: auto;"}
-  %h1 Edit User Detail
-  = form_for :user_profile, url: user_profile_path(@user_profile), method: :patch do |f|
-    %p
-      = f.label :name, "Profile Image"
-      %br/
-      <img src=#{current_user.image.present? ? "#{current_user.image.name_url}" : nil}  style="width:50px;height:50px;">
-      \#{f.file_field :name}
-    %p
-      = f.label :phone_no, "Phone No"
-      %br/
-      = f.text_field :phone_no
-    %p
-      = f.label :date_of_birth, "Date of Birth"
-      %br/
-      = f.date_field :date_of_birth
-    %p
-      = f.label :sex
-      = f.radio_button(:sex, "male")
-      = f.label :male
-      = f.radio_button(:sex, "female")
-      = f.label :female
-    %p
-      = f.label :address
-      %br/
-      = f.text_area :address
-    %p
-      = f.submit 'Save Changes'
-  %p= link_to 'Back', user_profile_path
+%section#registration
+  .container
+    .row.text-center.main_content
+      = form_for :user_profile, url: edit_user_profile_path(@profile), html: { method: :put } do |f|
+        .form
+          .input-group.margin-bottom-sm
+            %span.input-group-addon
+              %i.fa.fa-user.fa-fw
+            = f.text_field :name, value: @profile.name, autofocus: true, class: 'form-control', placeholder: 'Name'
+          %div
+            .input-group.margin-bottom-sm.col-md-6
+              %span.input-group-addon
+                %i.fa.fa-birthday-cake.fa-fw
+              = f.date_field :dob, value: @profile.dob, class: 'form-control', placeholder: 'date_of_birth'
+            .input-group.margin-bottom-sm.col-md-6
+              %span.input-group-addon
+                %i.fa.fa-venus-mars.fa-fw
+              = f.select 'sex', [ ['---- Gender ----', ''], ['male', 'Male'], ['female', 'Female'], ['other', 'Other']], {}, { :class => 'form-control'}
+        = f.submit "Update", class: 'btn btn-primary send'

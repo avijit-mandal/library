@@ -1,3 +1,204 @@
-// Place all the styles related to the user_profile controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.page-header {
+  padding-bottom: 5px;
+  padding-left: 15px;
+  margin: 5px 0 9px;
+  border-bottom: 1px solid #eee;
+}
+
+.user_profile {
+  .container {
+    position:relative;
+    width: 100%;
+  }
+}
+
+.panel-heading {
+  background-color: #174714 !important;
+  color: #fff !important;
+}
+
+.bubble {
+  position: relative;
+  width: 580px;
+  min-height: 65px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+
+  &:after {
+    position: absolute;
+    content: '';
+    border-style: solid;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #fff;
+    display: block;
+    width: 0;
+    z-index: 1;
+    margin-top: -15px;
+    left: -15px;
+    top: 50%;
+  }
+
+  &:before {
+    position: absolute;
+    content: '';
+    border-style: solid;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #ccc;
+    display: block;
+    width: 0;
+    z-index: 0;
+    margin-top: -15px;
+    left: -16px;
+    top: 50%;
+  }
+}
+
+.post-actions {
+  margin: 5px;
+}
+
+.comment-form {
+  .form-group {
+    width: 90%;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+.comment-avatar img {
+  width: 40px;
+  margin-right: 5px;
+}
+
+.comment {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 5px 0;
+  overflow: auto;
+  width: 100%;
+}
+
+.friends {
+  li {
+    list-style: none;
+    padding: 0 5px;
+    display: inline;
+    float: left;
+  }
+
+  img {
+    width: 55px;
+  }
+}
+
+.groups img {
+  width: 80px;
+  float: left;
+  margin-right: 15px;
+}
+
+.group-item {
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  overflow: auto;
+}
+
+.members {
+  .member-row {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  img {
+    margin-bottom: 5px;
+  }
+}
+
+.profile {
+  ul {
+    margin-top: 20px;
+    padding-left: 0px;
+  }
+
+  li {
+    list-style: none;
+    line-height: 1.9em;
+    width: 100%
+  }
+}
+
+.photos {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    float: left;
+    margin: 5px;
+    width: 23%;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+@media (min-width: 991px) {
+  .members p {
+    padding-top: 40px;
+  }
+}
+
+#edit_picture {
+  // display: none;
+  margin-top: -40px;
+  margin-left: 22px;
+  height:40px;
+}
+.avatar #edit_picture label {
+  left: 21px;
+  top: 97px;
+  background-color: #9197a3;
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  padding-bottom: 0px;
+  width: 97px;
+  word-spacing: -10px;
+}
+
+.image #cover-image #edit_picture label {
+  left: 21px;
+  top: 97px;
+  background-color: #9197a3;
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  padding-bottom: 0px;
+  width: 97px;
+  word-spacing: -10px;
+  margin-top: -92px;
+  margin-left: -17px;
+}
+
+#image:hover + #edit_picture {
+    display: block;
+}
+
+#edit_picture > input
+{
+  opacity: 0;
+}
+
+#edit_picture span
+{
+  width: 110px;
+  cursor: pointer;
+}

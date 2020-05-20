@@ -12,9 +12,229 @@
  *
  *= require_tree .
  *= require_self
- */
-
- .container {
-  width: 100%;
+*/
+.wrap {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
   padding: 0;
- }
+  background:#f6f6f6;
+  position: relative;
+}
+
+.fixed-nav-footer-block {
+  padding: 70px 0 30px 0px;
+}
+/*-----------------------------------------------------------------------------------------------------
+                                navbar
+-------------------------------------------------------------------------------------------------------*/
+#navigation, .navbar-default
+{
+    border-radius: 0px;
+    border: 0;
+    background-color: #052c03;
+    box-shadow: 0 -2px 12px 3px #2d4421;
+}
+.navbar-default .navbar-nav>li>a {
+    font-size: 16px;
+    transition: all 0.5s cubic-bezier(.17,.67,.83,.67);
+    color: #E5E5E5;
+    margin: 5px 20px;
+    padding: 0;
+    line-height: 28px;
+    font-family: "Coda";
+    text-transform: capitalize;
+}
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
+{
+    color: #fff;
+}
+.navbar-default .navbar-brand {
+    color: #fff;
+    font-family: "Coda";
+    padding: 5px 15px;
+    font-size: 26px;
+    line-height: 100%;
+    height: auto;
+}
+
+.nav-wrap
+{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+#wrapper
+{
+    background: url(../img/background.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+#overlay-1
+{
+    background-color: rgba(40, 40, 40, 0.6);
+    position: relative;
+}
+
+.starting-text
+{
+    padding: 177px 0px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #000;
+    letter-spacing: 2px;
+}
+.rene {
+    font-size: 120px;
+    color: white;
+    font-family: "omnes-pro", "Helvetica", sans-serif;
+    font-weight: 300;
+    margin-top: 75px;
+}
+
+.starting-text h2 {
+    font-family: "omnes-pro", "Helvetica", sans-serif;
+    color: #fff;
+}
+
+.bottom
+{
+    width: 100%;
+    position: absolute;
+    bottom: 2%;
+}
+.bottom a
+{
+    color: rgba(192, 192, 192, 0.5);
+}
+h5
+{
+    padding-top: 22px;
+    font-size: 18px;
+}
+
+/* ---------------------------------------------------------------------------------------------------
+                            contact
+ ---------------------------------------------------------------------------------------------------*/
+ #registration .container {
+    margin: 0 30%;
+    width: auto;
+    box-shadow: 0 -2px 12px 3px #2d4421
+  }
+
+  #registration .main_content {
+    padding-top: 0px;
+  }
+  #heading.row.text-center {
+    align-content: center;
+  }
+
+  .border {
+    border-top: #052c03 solid 2px;
+    padding: 5px 0 5px 0;
+  }
+  #heading #heading-text h3 {
+    font-size: 49px;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 0;
+    text-transform: uppercase;
+  }
+  .input-group
+  {
+    padding: 18px 5px;
+    float: left;
+  }
+  .send
+  {
+    float: left;
+  }
+  .map
+  {
+    padding: 18px 0px;
+  }
+  #registration
+  {
+    padding: 30px 0;
+  }
+  form
+  {
+    width: 100%;
+  }
+
+/*=====~^~^~^~^~^~^~^~^~^~^~^~^&~&~&~&~&~&^&^&^&^&^&^*&*&*&*&%$%$%$%$%$======*/
+
+#sub-footer{
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  background-color: #052c03;
+  text-shadow:none;
+  color:#ddd;
+  padding-top:0px;
+-webkit-box-shadow: 0 -4px 4px -2px #222;
+   -moz-box-shadow: 0 -4px 4px -2px #222;
+        box-shadow: 0 -4px 4px -2px #222;
+}
+
+#sub-footer .span6{
+  margin-bottom:0;
+  padding:0;
+}
+
+
+#sub-footer span{
+  color:#bda9a9;
+}
+
+#sub-footer .copyright {
+  margin: 0;
+}
+
+.copyright p {
+  margin: 0;
+  text-align:left;
+  font-size:13px;
+}
+
+/* ===============================
+16. registration form
+================================ */
+.container.register-form {
+  margin: 10% 0 10% 0;
+  padding: 0 0 0 0;
+}
+
+.note
+{
+    text-align: center;
+    height: 80px;
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    color: #fff;
+    font-weight: bold;
+    line-height: 80px;
+}
+.form-content
+{
+    padding: 5%;
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+}
+.form-control{
+    border-radius:1.5rem;
+}
+.btnSubmit
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #0062cc;
+    color: #fff;
+}

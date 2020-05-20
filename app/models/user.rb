@@ -4,16 +4,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-   has_one :user_profile
-   has_one :image, as: :imageable
-   
-   has_many :books
+  has_one :user_profile
+  has_one :image, as: :imageable
 
-   def full_name
-		first_name.present? ? "#{first_name.capitalize} #{last_name.capitalize}" : nil
+  has_many :books
+
+  def full_name
+		name.capitalize
 	end
 
-  validates :first_name, :presence => true
-  validates :last_name, :presence => true
-	
+  validates :name, :presence => true
+
 end

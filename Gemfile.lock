@@ -333,7 +333,7 @@ DEPENDENCIES
   puma
   rails (~> 5.1.4)
   rails_admin
-  redis (~> 3.0)
+  redis (~> 3.2)
   redis-namespace
   rspec-collection_matchers
   rspec-rails

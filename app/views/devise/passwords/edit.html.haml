@@ -1,0 +1,44 @@
+%section#registration
+  .container
+    #heading.row.text-center
+      #heading-text.animated.zoomInDown
+        %h3.text-center Change Password
+    .border
+    .row.text-center.main_content
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+        .form
+          .input-group.margin-bottom-sm
+            %span.input-group-addon
+              %i.fa.fa-envelope-o.fa-fw
+            = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Email address'
+          .input-group.margin-bottom-sm
+            %span.input-group-addon
+              %i.fa.fa-key.fa-fw
+            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'
+        = f.submit "Change my password", class: 'btn btn-primary send'
+      = render "devise/shared/links"
+/ <!-- <h2>Change your password</h2>
+
+/ <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+/   <%= devise_error_messages! %>
+/   <%= f.hidden_field :reset_password_token %>
+
+/   <div class="field">
+/     <%= f.label :password, "New password" %><br />
+/     <% if @minimum_password_length %>
+/     <em>(<%= @minimum_password_length %> characters minimum)</em>
+/     <% end %><br />
+/     <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+/   </div>
+
+/   <div class="field">
+/     <%= f.label :password_confirmation, "Confirm new password" %><br />
+/     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+/   </div>
+
+/   <div class="actions">
+/     <%= f.submit "Change my password" %>
+/   </div>
+/ <% end %>
+
+/ <%= render "devise/shared/links" %> -->

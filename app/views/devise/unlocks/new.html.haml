@@ -1,0 +1,31 @@
+%section#registration
+  .container
+    #heading.row.text-center
+      #heading-text.animated.zoomInDown
+        %h3.text-center Sign In
+    .border
+    .row.text-center.main_content
+      = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+        .form
+          .input-group.margin-bottom-sm
+            %span.input-group-addon
+              %i.fa.fa-envelope-o.fa-fw
+            = f.email_field :email, class: 'form-control', placeholder: 'Email address'
+        = f.submit "Resend unlock instructions", class: 'btn btn-primary send'
+      = render "devise/shared/links"
+<!-- <h2>Resend unlock instructions</h2>
+
+<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Resend unlock instructions" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %> -->

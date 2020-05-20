@@ -10,72 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180729173635) do
+ActiveRecord::Schema.define(version: 20150922070121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "book_contents", id: :serial, force: :cascade do |t|
-    t.integer "book_id"
-    t.integer "user_id"
-    t.string "chapter"
-    t.text "chapter_content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "books", id: :serial, force: :cascade do |t|
-    t.string "title", limit: 32, null: false
-    t.float "price"
-    t.integer "subject_id"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.string "author"
-  end
-
-  create_table "images", id: :serial, force: :cascade do |t|
+  create_table "images", force: :cascade do |t|
     t.string "name"
-    t.integer "imageable_id"
     t.string "imageable_type"
+    t.bigint "imageable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["imageable_id"], name: "index_images_on_imageable_id"
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
-  create_table "madicines", force: :cascade do |t|
-    t.string "sl_no"
-    t.string "manufacturer"
-    t.string "name"
-    t.string "m_type"
-    t.string "unit"
-    t.string "price"
-  end
-
-  create_table "subjects", id: :serial, force: :cascade do |t|
-    t.string "name"
-  end
-
-  create_table "tests", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "login"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_profiles", id: :serial, force: :cascade do |t|
-    t.integer "phone_no"
-    t.text "address"
-    t.string "sex"
-    t.date "date_of_birth"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-  end
-
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -86,18 +35,27 @@ ActiveRecord::Schema.define(version: 20180729173635) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "unconfirmed_email"
+    t.string "name", default: "", null: false
+    t.string "secret_name", default: "", null: false
+    t.string "sex", limit: 10, default: "", null: false
+    t.date "dob"
+    t.string "marital_status", limit: 10, default: "", null: false
+    t.string "phone_no", limit: 15, default: "", null: false
+    t.string "alternate_email", default: "", null: false
+    t.string "contact_no", default: "", null: false
+    t.string "address1", default: "", null: false
+    t.string "address2", default: "", null: false
+    t.string "pin_code", limit: 10, default: "", null: false
+    t.string "city", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "books", "users"
-  add_foreign_key "user_profiles", "users"
 end

@@ -1,0 +1,96 @@
+%section#registration
+  .container
+    #heading.row.text-center
+      #heading-text.animated.zoomInDown
+        %h3.text-center Sign Up
+    .border
+    .row.text-center.main_content
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f|
+        .form
+          .input-group.margin-bottom-sm
+            %span.input-group-addon
+              %i.fa.fa-user.fa-fw
+            = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Name'
+          .input-group.margin-bottom-sm
+            %span.input-group-addon
+              %i.fa.fa-user.fa-fw
+            = f.text_field :secret_name, autofocus: true, class: 'form-control', placeholder: 'Secret Name'
+          .input-group.margin-bottom-sm
+            %span.input-group-addon
+              %i.fa.fa-envelope-o.fa-fw
+            = f.email_field :email, class: 'form-control', placeholder: 'Email address'
+          .input-group.margin-bottom-sm
+            %span.input-group-addon
+              %i.fa.fa-key.fa-fw
+            = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'
+          .input-group.margin-bottom-sm
+            %span.input-group-addon
+              %i.fa.fa-key.fa-fw
+            = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'
+          %div
+            .input-group.margin-bottom-sm.col-md-6
+              %span.input-group-addon
+                %i.fa.fa-birthday-cake.fa-fw
+              = f.date_field :dob, class: 'form-control', placeholder: 'date_of_birth'
+            .input-group.margin-bottom-sm.col-md-6
+              %span.input-group-addon
+                %i.fa.fa-venus-mars.fa-fw
+              = f.select 'sex', [ ['---- Gender ----', ''], ['male', 'Male'], ['female', 'Female'], ['other', 'Other']], {}, { :class => 'form-control'}
+        = f.submit "Sign up", class: 'btn btn-primary send'
+/ contacts
+
+/ #wrapper
+/   %section#content
+/     .container
+/       .row
+/         .span12
+/           .cta-box
+/             .row
+/               .span8
+/                 .cta-text
+/                   %h2 Sign up
+/                   = form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f|
+/                     = devise_error_messages!
+/                     .field
+/                       = f.label :first_name
+/                       %br/
+/                       = f.text_field :first_name, autofocus: true
+/                     .field
+/                       = f.label :middle_name
+/                       %br/
+/                       = f.text_field :middle_name
+/                     .field
+/                       = f.label :last_name
+/                       %br/
+/                       = f.text_field :last_name
+/                     .field
+/                       = f.label :secret_name
+/                       %br/
+/                       = f.text_field :secret_name
+/                     .field
+/                       = f.label :email
+/                       %br/
+/                       = f.email_field :email
+/                     .field
+/                       = f.label :password
+/                       - if @minimum_password_length
+/                         %em
+/                           (#{@minimum_password_length} characters minimum)
+/                       %br/
+/                       = f.password_field :password, autocomplete: "off"
+/                     .field
+/                       = f.label :password_confirmation
+/                       %br/
+/                       = f.password_field :password_confirmation, autocomplete: "off"
+/                     .field
+/                       = f.label :gender
+/                       %br/
+/                       = f.text_field :sex
+/                     .field
+/                       = f.label :date_of_birth
+/                       %br/
+/                       = f.date_field :dob
+/                     .actions
+/                       = f.submit "Sign up"
+/                   = render "devise/shared/links"
+

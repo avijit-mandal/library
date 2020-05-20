@@ -52,7 +52,7 @@ gem "database_cleaner"
 gem 'nokogiri'
 gem 'mechanize'
 
-gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.2'
 gem 'redis-namespace'
 
 #http => https redirection

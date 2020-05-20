@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'welcome/index',  as: 'welcome'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :tests
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -57,18 +59,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  resources :book, :except => :index do
-    resources :book_content, :except => :index
-  end
 
   resources :user_profile, :except => :index
-  resources :subject, :except => :index
-  get 'book', to: 'book#list'
-  #get 'subject/:subject_id' => 'book#show_subject', as: 'subject'
-  get 'book/:book_id/chapter_list' => 'book_content#chapter_list', as: 'chapters'
-  get 'my_books' => 'book#my_books', as: 'my_books'
-  get 'download_xls' => 'book#download_xls', as: 'download_xls'
 
-  root 'book#list'
+  root 'welcome#index'
 
 end

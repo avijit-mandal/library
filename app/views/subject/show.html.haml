@@ -1,8 +1,0 @@
-%div{:style => "overflow: auto;"}
-  = render partial: 'shared/subjects'
-  #books_per_subject{:style => "float: left; width: 70%; padding: 10px 0px 0px 20px; background-color: rgb(255, 255, 240); overflow: auto;"}
-    %h1= @subject.name
-    %ul
-      - @subject.books.each do |sub|
-        %li= link_to sub.title, book_path(sub)
-    %p= link_to 'Back', book_index_path

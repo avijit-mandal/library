@@ -1,18 +1,150 @@
-#user_profile{:style => "overflow: auto;"}
-  %h1
-    Welcome #{current_user.first_name.capitalize} #{current_user.last_name.capitalize}
-  %table
-    %td{:style => "width: 60%"}
-      <img src=#{current_user.image.present? ? "#{current_user.image.name_url}" : nil}  style="width:150px;height:150px;">
-    %td
-      %p
-        Phone No.:- #{@user_profile.phone_no}
-        %br/
-        Sex:- #{@user_profile.sex}
-        %br/
-        Date of Birth:- #{@user_profile.date_of_birth}
-        %br/
-        Address:- #{@user_profile.address}
-        %br/
-      %p= link_to 'Edit', edit_user_profile_path(@user_profile)
-      %p= link_to 'delete details', user_profile_path(@user_profile), method: :DELETE, data: { confirm: "Are you sure you want to delete this item?"}
+%section.user_profile
+  .container
+    .row
+      .col-md-8
+        .profile
+          %h1.page-header
+            #{@profile.full_name}
+          .row
+            .col-md-4
+              .row
+                %img.img-thumbnail{:src => "/assets/img/user.png"}/
+                / = #form_for :member_profile, url:  profile_image_upload_member_profiles_path, :html => { :id => "profile_image_form", multipart: true }, method: :POST do|f|
+                /   #image
+                /     - #if @profile.profile_image.present?
+                /       %img{:alt => "people", :src => "#{@profile.image}" }
+                /     - #else
+                /       %img{:alt => "people", :src => "/assets/default_avatar.jpg"}
+                /   - #if @profile == current_member
+                /     #edit_picture
+                /       %label{:for => "profile_image_field"}
+                /         %span.glyphicon.glyphicon-camera Upload Image
+                /       =#f.file_field :asset, id: 'profile_image_field', accept: 'image/*'
+                #edit_picture
+                  %label{:for => "profile_image_field"}
+                    %span.glyphicon.glyphicon-camera Upload Image
+              .row
+                %h3 #{@profile.secret_name}
+                = link_to 'Edit', edit_user_profile_path(@profile)
+            .col-md-8
+              %ul
+                %li.row
+                  %strong.col-md-4
+                    Email Address:
+                  .col-md-8
+                    #{@profile.email}
+                %li.row
+                  %strong.col-md-4
+                    Date of Birth:
+                  .col-md-8
+                    #{formated_date_dd_mm_yy(@profile.dob)}
+                %li.row
+                  %strong.col-md-4
+                    Phone No.:
+                  .col-md-8
+                    #{@profile.phone_no}
+                %li.row
+                  %strong.col-md-4
+                    State:
+                  .col-md-8
+                    Quindío
+                %li.row
+                  %strong.col-md-4
+                    Gender:
+                  .col-md-8
+                    #{@profile.sex}
+                %li
+                  %strong.col-md-4
+                    Profession:
+                  .col-md-8
+                    Web Developer
+          %br/
+          %br/
+          .row
+            .col-md-12
+              .panel.panel-default
+                .panel-heading
+                  %h3.panel-title Profile Wall
+                .panel-body
+                  %form
+                    .form-group
+                      %textarea.form-control{:placeholder => "Write on the wall"}
+                    %button.btn.btn-default{:type => "submit"} Submit
+                    .pull-right
+                      .btn-group
+                        %button.btn.btn-default{:type => "button"}
+                          %i.fa.fa-pencil
+                          Text
+                        %button.btn.btn-default{:type => "button"}
+                          %i.fa.fa-file-image-o
+                          Image
+                        %button.btn.btn-default{:type => "button"}
+                          %i.fa.fa-file-video-o
+                          Video
+      .col-md-4
+        .panel.panel-default.friends
+          .panel-heading
+            %h3.panel-title My Friends
+          .panel-body
+            %ul
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+              %li
+                %a.thumbnail{:href => "profile.html"}
+                  %img{:src => "/assets/img/user.png"}/
+            .clearfix
+            %a.btn.btn-primary{:href => "#"} View All Friend
+        .panel.panel-default.groups
+          .panel-heading
+            %h3.panel-title Latest Groups
+          .panel-body
+            .group-item
+              %img{:src => "/assets/img/group.png"}/
+              %h4
+                %a{:href => "#"} Sample Group
+              %p This is a Dobble social network simple group
+            .clearfix
+            .group-item
+              %img{:src => "/assets/img/group.png"}/
+              %h4
+                %a{:href => "#"} Sample Group
+              %p This is a Dobble social network simple group
+            .clearfix
+            .group-item
+              %img{:src => "/assets/img/group.png"}/
+              %h4
+                %a{:href => "#"} Sample Group
+              %p This is a Dobble social network simple group
+            .clearfix
+            %a.btn.btn-primary{:href => "#"} View All Groups
